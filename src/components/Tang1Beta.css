@@ -72,8 +72,8 @@
   }
 
   .wifi-name {
-    font-size: 6px !important; /* Giảm kích thước chữ */
-    padding: 1px 2px; /* Giảm padding để chữ không bị tràn */
+    font-size: 3px !important; /* Giảm kích thước chữ */
+    padding: 1px 1px; /* Giảm padding để chữ không bị tràn */
   }
 
   /* Khi hover vào, chỉ phóng to nhẹ */
