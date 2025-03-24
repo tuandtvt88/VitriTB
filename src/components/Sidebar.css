@@ -1,0 +1,139 @@
+/* Sidebar tổng thể */
+.sidebar {
+    position: absolute;
+    top: 110px; /* Đặt dưới Navbar */
+    left: 10px;
+    width: 190px;
+    height: calc(100% - 140px); /* Điều chỉnh chiều cao */
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+   
+}
+
+/* Tiêu đề Sidebar */
+.sidebar-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Menu */
+.sidebar-menu {
+    width: 100%;
+}
+
+/* Nút Sidebar */
+.sidebar-button {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    background: #1f2c3d;
+    margin: 8px 0;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng hover */
+.sidebar-button:hover {
+    background: #3498db;
+    transform: scale(1.05);
+}
+
+/* Sidebar ẩn trên mobile */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100px;
+        height: auto; 
+        border-radius: 5px;
+        left: -5px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;    
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+       /* Giảm kích thước chữ */
+       .sidebar-title {
+        font-size: 10px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .sidebar-button {
+        font-size: 12px;
+        padding: 4px;
+        width: 100%;
+        text-align: center;
+        display: block;
+        border-radius: 5px;
+        background: #223344;
+        color: white;
+        margin: 5px 0;
+    }
+
+    /* Hiển thị nút đóng trên mobile */
+    /* Nút đóng Sidebar */
+.close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+}
+
+/* Ẩn nút đóng trên màn hình lớn */
+@media (min-width: 769px) {
+    .close-btn {
+        display: none;
+    }
+}
+
+/* Nút mở Sidebar trên mobile */
+.menu-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1100;
+}
+
+/* Khi Sidebar mở, ẩn nút menu */
+.sidebar.open + .menu-button {
+    display: none;
+}
