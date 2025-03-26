@@ -1,7 +1,7 @@
-export function Footer(){
-    return(
-        <>
-      
-        </>
-    )
+export function Footer() {
+    return (
+<>
+
+</>
+    );
 }

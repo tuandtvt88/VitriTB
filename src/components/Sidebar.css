@@ -4,7 +4,7 @@
     top: 110px; /* Đặt dưới Navbar */
     left: 10px;
     width: 190px;
-    height: calc(100% - 140px); /* Điều chỉnh chiều cao */
+    height: calc(100% - 126px); /* Điều chỉnh chiều cao */
     background: linear-gradient(135deg, #2c3e50, #34495e);
     color: white;
     padding: 20px;
@@ -55,8 +55,9 @@
 /* Sidebar ẩn trên mobile */
 @media (max-width: 768px) {
     .sidebar {
-        width: 100px;
-        height: auto; 
+        top: 8px !important;
+        width: 100px !important;
+        height: auto !important; 
         border-radius: 5px;
         left: -5px;
         transform: translateX(-100%);
@@ -64,7 +65,7 @@
     }
 
     .sidebar.open {
-        transform: translateX(0);
+        transform: translateX(0) ;
     }
        /* Giảm kích thước chữ */
        .sidebar-title {

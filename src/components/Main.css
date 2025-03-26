@@ -42,8 +42,8 @@
 /* Mobile mode */
 @media (max-width: 768px) {
     .main {
-        margin-left: 0;
-        width: 110%; /* Chiếm toàn bộ chiều rộng */
+        margin-left: 0 !important;
+        width: 110% ; /* Chiếm toàn bộ chiều rộng */
         height: 110%; /* Đảm bảo không bị tràn */
         padding: 15px;
         

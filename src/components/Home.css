@@ -1,4 +1,6 @@
 .container {
+    padding: 0px;
+    margin: 0px;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -17,6 +19,7 @@
 .sidebar.open + .main {
     margin-left: 250px;
 }
+
 
 /* Sidebar và Main trên Mobile */
 @media (max-width: 768px) {
