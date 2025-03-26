@@ -1,0 +1,48 @@
+import React from "react";
+import "./Tang1Beta.css";
+import image from "../assets/T4.png";
+import { Wifi } from "lucide-react"; // Import icon Wi-Fi
+
+export function Tang4Beta() {
+    const wifiLocations = [
+        { name: "AP-Tang-4-405-U6", top: "12%", left: "6%" },
+        { name: "AP-Tang-4-406-U6", top: "13%", left: "22%" },
+        { name: "AP-Tang-4-408-U6P", top: "11%", left: "39%" },
+        { name: "AP-Tang-4-409-U6P", top: "11%", left: "59%" },
+        { name: "AP-Tang-4-411-U6", top: "14%", left: "73%" },
+        { name: "AP-Tang-4-412-U6", top: "11%", left: "86%" },
+        { name: "AP-Tang-4-414-U6", top: "35%", left: "73%" },
+        { name: "AP-Tang-4-413-U6", top: "33%", left: "86%" },
+        { name: "AP-Tang-4-416-U6", top: "52%", left: "80%" },
+        { name: "AP-Tang-4-417-U6", top: "67%", left: "72%" },
+        { name: "AP-Tang-4-418-U6", top: "69%", left: "86%" },
+        { name: "AP-Tang-4-419-U6", top: "91%", left: "86%" },
+        { name: "AP-Tang-4-420-U6", top: "89%", left: "73%" },
+        { name: "AP-Tang-4-421-U6", top: "91%", left: "21%" },
+        { name: "AP-Tang-4-422-U6", top: "89%", left: "10%" },
+        { name: "AP-Tang-4-423-U6", top: "68%", left: "9%" },
+        { name: "AP-Tang-4-424-U6P", top: "70%", left: "22%" },
+        { name: "AP-Tang-4-401-U6", top: "52%", left: "13%" },
+        { name: "AP-Tang-4-404-U6", top: "36%", left: "07%" },
+        { name: "AP-Tang-4-403-U6", top: "33%", left: "20%" },
+        
+    ];
+
+    return (
+        <div className="tang1beta">
+            <div className="map-container">
+            <img src={image} alt="Tang 3 Beta" className="map-image" />
+            {wifiLocations.map((wifi, index) => (
+                <div
+                    key={index}
+                    className="wifi-marker"
+                    style={{ top: wifi.top, left: wifi.left }}
+                >
+                    <Wifi className="wifi-icon" size={28} color="green" />
+                    <div className="wifi-name">{wifi.name}</div>
+                </div>
+            ))}
+            </div>
+        </div>
+    );
+}

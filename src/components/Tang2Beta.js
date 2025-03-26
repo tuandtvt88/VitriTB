@@ -1,5 +1,5 @@
 import React from "react";
-import "./Tang2Beta.css";
+import "./Tang1Beta.css";
 import image from "../assets/T2.png";
 import { Wifi } from "lucide-react"; // Import icon Wi-Fi
 

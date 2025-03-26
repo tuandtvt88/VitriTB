@@ -45,7 +45,7 @@
         margin-left: 0;
         width: 110%; /* Chiếm toàn bộ chiều rộng */
         height: 110%; /* Đảm bảo không bị tràn */
-        padding: 20px;
+        padding: 6px;
         
     }
     .map-image {

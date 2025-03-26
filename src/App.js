@@ -4,6 +4,8 @@ import { Tang1Beta } from "./components/Tang1Beta";
 import  './components/App.css';
 import { Tang2Beta } from "./components/Tang2Beta";
 import { Tang3Beta } from "./components/Tang3Beta";
+import { Tang4Beta } from "./components/Tang4Beta";
+import { Tang5Beta } from "./components/Tang5Beta";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
         <Route path="tang1beta" element={<Tang1Beta/>}></Route>
         <Route path="tang2beta" element={<Tang2Beta/>}></Route>
         <Route path="tang3beta" element={<Tang3Beta/>}></Route>
+        <Route path="tang4beta" element={<Tang4Beta/>}></Route>
+        <Route path="tang5beta" element={<Tang5Beta/>}></Route>
         </Route>
     </Routes>
   );

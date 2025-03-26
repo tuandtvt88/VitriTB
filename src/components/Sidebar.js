@@ -15,12 +15,14 @@ export function Sidebar() {
             <div className={`sidebar ${isOpen ? "open" : ""}`}>
                 {/* Nút đóng chỉ hiển thị trên mobile */}
                 <button className="close-btn" onClick={() => setIsOpen(false)}>✖</button>
-                <div className="sidebar-title">Danh sách các tầng</div>
+                <div className="sidebar-title">Vị trí AP nhà Beta</div>
 
                 <nav className="sidebar-menu">
                     <SidebarButton to="/tang1beta" text="Tầng 1 Beta" />
                     <SidebarButton to="/tang2beta" text="Tầng 2 Beta" />
                     <SidebarButton to="/tang3beta" text="Tầng 3 Beta" />
+                    <SidebarButton to="/tang4beta" text="Tầng 4 Beta" />
+                    <SidebarButton to="/tang5beta" text="Tầng 5 Beta" />
                 </nav>
             </div>
         </>
