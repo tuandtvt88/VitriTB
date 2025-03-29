@@ -11,7 +11,7 @@ export function Tang2Gamma() {
         { name: "AP-GM-Tang-2-226-U6P", top: "33%", left: "75%" },
         { name: "AP-GM-Tang-2-225-U6P", top: "36%", left: "88%" },
         { name: "AP-GM-Tang-2-201-U6P", top: "50%", left: "82%" },
-        { name: "AP-GM-Tang-2-203-U6P", top: "67%", left: "77%" },
+        { name: "AP-GM-Tang-2-203-U6P", top: "67%", left: "76%" },
         { name: "AP-GM-Tang-2-204-ACP", top: "70%", left: "88%" },
         { name: "AP-GM-Tang-2-205-U6P", top: "90%", left: "87%" },
         { name: "AP-GM-Tang-2-208-ACP", top: "91%", left: "58%" },
