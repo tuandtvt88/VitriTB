@@ -14,6 +14,7 @@ export function Tang1Beta() {
         { name: "AP-BT-SanTruong-03-ACP", top: "50%", left: "67%" },
         { name: "AP-BT-FU-U6P", top: "86%", left: "80%" },
         { name: "AP-BT-SanTruong-02-U6P", top: "78%", left: "40%" },
+        { name: "AP-BT-Server-ACP", top: "94%", left: "15%" },
         { name: "Thư viện-01", top: "83%", left: "14%" },
         { name: "Thư viện-02", top: "53%", left: "14%" },
         { name: "Thư viện-03", top: "33%", left: "14%" },

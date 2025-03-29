@@ -12,7 +12,24 @@
     flex-direction: column;
     align-items: center;
     box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+        /* Thêm thanh cuộn khi nội dung vượt quá chiều cao */
+        overflow-y: auto;
+        scrollbar-width: thin; /* Dành cho Firefox */
+        scrollbar-color: #3498db #2c3e50; /* Dành cho Firefox */
    
+}
+/* Tùy chỉnh thanh cuộn cho Chrome, Edge, Safari */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #3498db;
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #2c3e50;
 }
 
 /* Tiêu đề Sidebar */

@@ -24,6 +24,13 @@ export function Sidebar() {
                     <SidebarButton to="/tang4beta" text="Tầng 4 Beta" />
                     <SidebarButton to="/tang5beta" text="Tầng 5 Beta" />
                 </nav>
+                <br></br>
+                <div className="sidebar-title">Vị trí AP nhà Gamma</div>
+
+                <nav className="sidebar-menu">
+                    <SidebarButton to="/tang1gamma" text="Tầng 1 Gamma" />
+      
+                      </nav>
             </div>
         </>
     );

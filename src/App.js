@@ -6,6 +6,7 @@ import { Tang2Beta } from "./components/Tang2Beta";
 import { Tang3Beta } from "./components/Tang3Beta";
 import { Tang4Beta } from "./components/Tang4Beta";
 import { Tang5Beta } from "./components/Tang5Beta";
+import { Tang1Gamma } from "./components/Tang1Gamma";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="tang3beta" element={<Tang3Beta/>}></Route>
         <Route path="tang4beta" element={<Tang4Beta/>}></Route>
         <Route path="tang5beta" element={<Tang5Beta/>}></Route>
+        <Route path="tang1gamma" element={<Tang1Gamma/>}></Route>
         </Route>
     </Routes>
   );
