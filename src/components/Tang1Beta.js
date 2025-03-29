@@ -11,7 +11,7 @@ export function Tang1Beta() {
         { name: "AP-BT-Sales-U6P", top: "15%", left: "75%" },
         { name: "AP-BT-CTSV-U6", top: "13%", left: "88%" },
         { name: "AP-BT-SanTruong-01-U6", top: "28%", left: "55%" },
-        { name: "AP-BT-SanTruong-03-ACP", top: "50%", left: "67%" },
+        { name: "AP-BT-SanTruong-03-ACP", top: "50%", left: "64%" },
         { name: "AP-BT-FU-U6P", top: "86%", left: "80%" },
         { name: "AP-BT-SanTruong-02-U6P", top: "78%", left: "40%" },
         { name: "AP-BT-Server-ACP", top: "94%", left: "15%" },

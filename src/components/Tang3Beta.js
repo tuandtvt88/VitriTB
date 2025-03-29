@@ -11,8 +11,8 @@ export function Tang3Beta() {
         { name: "AP-Tang-3-309-U6P", top: "13%", left: "58%" },
         { name: "AP-Tang-3-311-U6P", top: "14%", left: "76%" },
         { name: "AP-Tang-3-312-U6P", top: "11%", left: "86%" },
-        { name: "AP-Tang-3-314-U6P", top: "35%", left: "77%" },
-        { name: "AP-Tang-3-313-U6P", top: "33%", left: "90%" },
+        { name: "AP-Tang-3-314-U6P", top: "35%", left: "75%" },
+        { name: "AP-Tang-3-313-U6P", top: "33%", left: "88%" },
         { name: "AP-Tang-3-316-U6P", top: "52%", left: "85%" },
         { name: "AP-Tang-3-317-U6P", top: "67%", left: "78%" },
         { name: "AP-Tang-3-320-U6P", top: "90%", left: "80%" },
@@ -21,7 +21,7 @@ export function Tang3Beta() {
         { name: "AP-Tang-3-324-U6P", top: "70%", left: "22%" },
         { name: "AP-Tang-3-301-U6P", top: "52%", left: "13%" },
         { name: "AP-Tang-3-304-U6P", top: "36%", left: "07%" },
-        { name: "AP-Tang-3-303-U6P", top: "36%", left: "23%" },
+        { name: "AP-Tang-3-303-U6P", top: "33%", left: "20%" },
         
     ];
 
