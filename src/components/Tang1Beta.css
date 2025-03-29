@@ -74,7 +74,7 @@
   animation: wifiGlow4 0.7s infinite ease-in-out;
 }
 .wifi-icon path:nth-child(1) {
-  animation: wifiGlow4 0.7s infinite ease-in-out;
+  animation: wifiGlow4 0s infinite ease-in-out;
   
 }
 
