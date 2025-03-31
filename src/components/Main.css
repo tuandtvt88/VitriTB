@@ -19,9 +19,9 @@
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
 
     /* Nền gradient động */
-    background: linear-gradient(45deg, #ff4b1f, #ff9068, #1e90ff, #2ed573, #ff4757);
+    /* background: linear-gradient(45deg, #ff4b1f, #ff9068, #1e90ff, #2ed573, #ff4757);
     background-size: 300% 300%;
-    animation: gradientAnimation 10s ease infinite;
+    animation: gradientAnimation 10s ease infinite; */
 }
 
 .floor-container {
