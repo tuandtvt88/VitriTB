@@ -40,7 +40,13 @@
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    color: #FFD700; /* Màu vàng */
+    background: linear-gradient(90deg, #3498db, #2ecc71); /* Gradient xanh */
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
+
 
 /* Menu */
 .sidebar-menu {
