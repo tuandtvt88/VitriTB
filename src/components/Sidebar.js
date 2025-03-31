@@ -30,6 +30,9 @@ export function Sidebar() {
                 <nav className="sidebar-menu">
                     <SidebarButton to="/tang1gamma" text="Tầng 1 Gamma" />
                     <SidebarButton to="/tang2gamma" text="Tầng 2 Gamma" />
+                    <SidebarButton to="/tang3gamma" text="Tầng 3 Gamma" />
+                    <SidebarButton to="/tang4gamma" text="Tầng 4 Gamma" />
+                    <SidebarButton to="/tang5gamma" text="Tầng 5 Gamma" />
                       </nav>
             </div>
         </>
