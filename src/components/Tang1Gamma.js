@@ -1,6 +1,6 @@
 import React from "react";
 import "./Tang1Beta.css";
-import image from "../assets/T1Gamma.png";
+import image from "../assets/T1Gamma.jpg";
 import { Wifi } from "lucide-react"; // Import icon Wi-Fi
 
 export function Tang1Gamma() {
