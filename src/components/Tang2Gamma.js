@@ -3,8 +3,8 @@ import "./Tang1Beta.css";
 import image from "../assets/T2Gamma.jpg";
 import { Wifi } from "lucide-react"; // Import icon Wi-Fi
 
-export function Tang2Gamma() {
-    const wifiLocations = [
+// ✅ Xuất danh sách WiFi để dùng ở các file khác
+export const wifiLocations = [
         { name: "AP-GM-Tang-2-219-U6P", top: "13%", left: "07%" },
         { name: "AP-GM-Tang-2-222-ACP", top: "13%", left: "37%" },
         { name: "AP-GM-Tang-2-223-U6P", top: "13%", left: "75%" },
@@ -21,23 +21,23 @@ export function Tang2Gamma() {
         { name: "AP-GM-Tang-2-215-U6P", top: "51%", left: "11%" },
         { name: "AP-GM-Tang-2-218-U6P", top: "33%", left: "6%" },
         { name: "AP-GM-Tang-2-217-U6P", top: "36%", left: "20%" },
-        
-    ];
+];
 
+export function Tang2Gamma() {
     return (
         <div className="tang1beta">
             <div className="map-container">
-            <img src={image} alt="Tang 1 Beta" className="map-image" />
-            {wifiLocations.map((wifi, index) => (
-                <div
-                    key={index}
-                    className="wifi-marker"
-                    style={{ top: wifi.top, left: wifi.left }}
-                >
-                    <Wifi className="wifi-icon" size={28} color="green" />
-                    <div className="wifi-name">{wifi.name}</div>
-                </div>
-            ))}
+                <img src={image} alt="Tang 1 Beta" className="map-image" />
+                {wifiLocations.map((wifi, index) => (
+                    <div
+                        key={index}
+                        className="wifi-marker"
+                        style={{ top: wifi.top, left: wifi.left }}
+                    >
+                        <Wifi className="wifi-icon" size={28} color="green" />
+                        <div className="wifi-name">{wifi.name}</div>
+                    </div>
+                ))}
             </div>
         </div>
     );

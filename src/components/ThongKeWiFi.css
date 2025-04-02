@@ -1,0 +1,146 @@
+.thong-ke {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+    background: #f4f6f9;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Tiêu đề */
+.thong-ke .title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Bố cục bảng */
+.thong-ke .tables-container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Thiết kế khung bảng */
+.thong-ke .table-wrapper {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Tiêu đề từng bảng */
+.thong-ke .building-title {
+    color: #3498db;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Thiết kế bảng */
+.thong-ke .wifi-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    border: 2px solid #3498db;
+}
+
+/* Định dạng tiêu đề cột */
+.thong-ke .wifi-table th {
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+}
+
+/* Định dạng ô dữ liệu */
+.thong-ke .wifi-table td {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    text-align: center;
+    padding: 12px;
+}
+
+/* Hàng xen kẽ màu khác */
+.thong-ke .wifi-table tr:nth-child(even) td {
+    background-color: #d6eaf8;
+}
+
+/* Hiệu ứng hover */
+.thong-ke .wifi-table tr:hover td {
+    background-color: #a9cce3;
+    color: white;
+    transition: 0.3s;
+}
+
+/* Cột loại AP */
+.thong-ke .ap-type {
+    font-weight: bold;
+}
+
+/* Màu sắc cho từng loại AP */
+.thong-ke .ap-u6-pro {
+    color: #2ecc71;  /* Xanh lá */
+}
+
+.thong-ke .ap-u6-lr {
+    color: #e67e22;  /* Cam */
+}
+
+.thong-ke .ap-ac-pro {
+    color: #c0392b;  /* Đỏ */
+}
+
+/* Hàng tổng */
+.thong-ke .total-row {
+    background-color: #f1c40f; /* Màu vàng */
+    font-weight: bold;
+}
+
+.thong-ke .total-row td {
+    color: #2c3e50;
+}
+.stat-button {
+    text-decoration: none;
+    color: inherit; /* Optional: This will make sure the link inherits the text color */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .thong-ke {
+        padding: 5px; /* Giảm padding tổng thể */
+    }
+    .thong-ke .tables-container {
+        grid-template-columns: 1fr;
+        gap: 1px; /* Giảm khoảng cách giữa các bảng */
+    }
+    
+
+    .thong-ke .table-wrapper {
+        margin-bottom: 0px !important;
+        overflow-x: auto; /* Allow horizontal scroll for tables on small screens */
+    }
+
+    .thong-ke .wifi-table {
+        font-size: 10px; /* Make the font smaller on mobile for readability */
+    }
+
+    .thong-ke .wifi-table th, .thong-ke .wifi-table td {
+        padding: 5px; /* Reduce padding on smaller screens */
+    }
+    .thong-ke .wifi-table th{
+        font-size: 12px;
+    }
+
+    .thong-ke .title {
+        font-size: 11px; /* Adjust title size for mobile */
+    }
+
+    .thong-ke .building-title {
+        font-size: 13px; /* Adjust title size for mobile */
+    }
+}

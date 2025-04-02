@@ -11,6 +11,7 @@ import { Tang2Gamma } from "./components/Tang2Gamma";
 import { Tang3Gamma } from "./components/Tang3Gamma";
 import { Tang4Gamma } from "./components/Tang4Gamma";
 import { Tang5Gamma } from "./components/Tang5Gamma";
+import { ThongKeWiFi } from "./components/ThongKeWiFi";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="tang3gamma" element={<Tang3Gamma/>}></Route>
         <Route path="tang4gamma" element={<Tang4Gamma/>}></Route>
         <Route path="tang5gamma" element={<Tang5Gamma/>}></Route>
+        <Route path="thongke" element={<ThongKeWiFi/>}></Route>
         </Route>
     </Routes>
   );

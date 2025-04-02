@@ -46,7 +46,7 @@ export function Sidebar() {
                     </nav>
                 )}
   <Link to="/thongke" className="stat-button">
-    Thống kê
+    Thống kê số lượng wifi
 </Link>
             </div>
         </>
