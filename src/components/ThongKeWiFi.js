@@ -1,150 +1,316 @@
-import React from "react";
-import './ThongKeWiFi.css';
-import { wifiLocations as wifiTang1Beta } from "./Tang1Beta";
-import { wifiLocations as wifiTang2Beta } from "./Tang2Beta";
-import { wifiLocations as wifiTang3Beta } from "./Tang3Beta";
-import { wifiLocations as wifiTang4Beta } from "./Tang4Beta";
-import { wifiLocations as wifiTang5Beta } from "./Tang5Beta";
-import { wifiLocations as wifiTang1Gamma } from "./Tang1Gamma";
-import { wifiLocations as wifiTang2Gamma } from "./Tang2Gamma";
-import { wifiLocations as wifiTang3Gamma } from "./Tang3Gamma";
-import { wifiLocations as wifiTang4Gamma } from "./Tang4Gamma";
-import { wifiLocations as wifiTang5Gamma } from "./Tang5Gamma";
+import React, { useState, useEffect } from "react";
+import "./ThongKeWiFi.css";
 
-// Hàm phân loại AP
-const classifyAP = (wifiList) => {
-    const result = { U6Pro: 0, U6LR: 0, ACPro: 0 };
+export function ThongKeWiFi() {
+  const [wifiData, setWifiData] = useState({
+    beta: {},
+    gamma: {},
+    ncv: { 5: {}, 6: {}, 7: {} },
+    ktxDomA: {},
+    ktxDomB: {}
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const floors = [1, 2, 3, 4, 5];
+      let betaData = {};
+      let gammaData = {};
+      const ncvHouses = [5, 6, 7];
+      const ncvFloors = [1, 2];
+      let ncvData = { 5: {}, 6: {}, 7: {} };
+      let ktxDomAData = {};
+      let ktxDomBData = {};
+
+      // Fetch data cho Beta và Gamma
+      for (const floor of floors) {
+        try {
+          const betaResponse = await fetch(`http://localhost:5000/api/tang${floor}beta`);
+          betaData[`Tầng ${floor} Beta`] = await betaResponse.json();
+        } catch (error) {
+          console.error(`❌ Lỗi lấy dữ liệu WiFi tầng ${floor} Beta:`, error);
+        }
+
+        try {
+          const gammaResponse = await fetch(`http://localhost:5000/api/tang${floor}gamma`);
+          gammaData[`Tầng ${floor} Gamma`] = await gammaResponse.json();
+        } catch (error) {
+          console.error(`❌ Lỗi lấy dữ liệu WiFi tầng ${floor} Gamma:`, error);
+        }
+      }
+
+      // Fetch data cho Nhà công vụ
+      for (const house of ncvHouses) {
+        for (const floor of ncvFloors) {
+          try {
+            const response = await fetch(`http://localhost:5000/api/tang${floor}ncvso${house}`);
+            if (!response.ok) throw new Error("HTTP error " + response.status);
+            ncvData[house][`Tầng ${floor}`] = await response.json();
+          } catch (error) {
+            console.error(`❌ Lỗi lấy dữ liệu Nhà CV ${house} tầng ${floor}:`, error);
+            ncvData[house][`Tầng ${floor}`] = [];
+          }
+        }
+      }
+
+      // Fetch data cho KTX
+      try {
+        const ktxAResponse = await fetch("http://localhost:5000/api/ktxdoma");
+        ktxDomAData["Ký túc xá"] = await ktxAResponse.json();
+      } catch (error) {
+        console.error("❌ Lỗi lấy dữ liệu KTX Dom A:", error);
+      }
+
+      try {
+        const ktxBResponse = await fetch("http://localhost:5000/api/ktxdomb");
+        ktxDomBData["Ký túc xá"] = await ktxBResponse.json();
+      } catch (error) {
+        console.error("❌ Lỗi lấy dữ liệu KTX Dom B:", error);
+      }
+
+      setWifiData({
+        beta: betaData,
+        gamma: gammaData,
+        ncv: ncvData,
+        ktxDomA: ktxDomAData,
+        ktxDomB: ktxDomBData
+      });
+    };
+
+    fetchData();
+  }, []);
+
+  const calculateGrandTotal = () => {
+    const calculateBuildingTotal = (data) => {
+      const { U6Pro, U6LR, ACPro, ACLite } = calculateTotal(data);
+      return U6Pro + U6LR + ACPro + ACLite;
+    };
+
+    let total = 0;
+
+    // Tính tổng cho Beta và Gamma
+    total += calculateBuildingTotal(wifiData.beta);
+    total += calculateBuildingTotal(wifiData.gamma);
+
+    // Tính tổng cho các nhà công vụ
+    [5, 6, 7].forEach(house => {
+      total += calculateBuildingTotal(wifiData.ncv[house]);
+    });
+
+    // Tính tổng cho KTX
+    total += calculateBuildingTotal(wifiData.ktxDomA);
+    total += calculateBuildingTotal(wifiData.ktxDomB);
+
+    return total;
+  };
+
+  const classifyAP = (wifiList) => {
+    const result = { 
+      U6Pro: 0, 
+      U6LR: 0, 
+      ACPro: 0,
+      ACLite: 0
+    };
 
     if (!Array.isArray(wifiList)) return result;
 
     wifiList.forEach((wifi) => {
-        if (typeof wifi.name === "string") {
-            // Điều kiện cho U6Pro và U6LR
-            if (wifi.name.includes("U6-Pro") || wifi.name.includes("U6P")) {
-                result.U6Pro += 1;
-            } else if (wifi.name.includes("U6-LR") || wifi.name.includes("U6")) {
-                result.U6LR += 1;
-            }
-            // Điều kiện cho AC-Pro và ACP
-            else if (wifi.name.includes("AC-Pro") || wifi.name.includes("ACP") || wifi.name.includes("AP-BT-Thu vien-01-ACP")) {
-                result.ACPro += 1;
-            }
-        }
+      const name = wifi.name?.toUpperCase();
+      switch(true) {
+        case name.includes('U6P'):
+        case name.includes('U6-PRO'):
+          result.U6Pro += 1;
+          break;
+        case name.includes('U6'):
+          result.U6LR += 1;
+          break;
+        case name.includes('ACP'):
+        case name.includes('AC-PRO'):
+          result.ACPro += 1;
+          break;
+        case name.includes('LITE'):
+          result.ACLite += 1;
+          break;
+      }
     });
 
     return result;
-};
+  };
 
-// Dữ liệu Beta và Gamma
-const dataBeta = {
-    "Tầng 1 Beta": classifyAP(wifiTang1Beta),
-    "Tầng 2 Beta": classifyAP(wifiTang2Beta),
-    "Tầng 3 Beta": classifyAP(wifiTang3Beta),
-    "Tầng 4 Beta": classifyAP(wifiTang4Beta),
-    "Tầng 5 Beta": classifyAP(wifiTang5Beta),
-};
-
-const dataGamma = {
-    "Tầng 1 Gamma": classifyAP(wifiTang1Gamma),
-    "Tầng 2 Gamma": classifyAP(wifiTang2Gamma),
-    "Tầng 3 Gamma": classifyAP(wifiTang3Gamma),
-    "Tầng 4 Gamma": classifyAP(wifiTang4Gamma),
-    "Tầng 5 Gamma": classifyAP(wifiTang5Gamma),
-};
-
-// Tổng số lượng từng loại AP
-const totalAP = (data) => {
+  const calculateTotal = (data) => {
     return Object.values(data).reduce((acc, curr) => {
-        acc.U6Pro += curr.U6Pro || 0;
-        acc.U6LR += curr.U6LR || 0;
-        acc.ACPro += curr.ACPro || 0;
-        return acc;
-    }, { U6Pro: 0, U6LR: 0, ACPro: 0 });
-};
+      const classified = classifyAP(curr);
+      acc.U6Pro += classified.U6Pro || 0;
+      acc.U6LR += classified.U6LR || 0;
+      acc.ACPro += classified.ACPro || 0;
+      acc.ACLite += classified.ACLite || 0;
+      return acc;
+    }, { U6Pro: 0, U6LR: 0, ACPro: 0, ACLite: 0 });
+  };
 
-// Tổng số lượng của tất cả AP cho cả Beta và Gamma
-const totalBeta = totalAP(dataBeta);
-const totalGamma = totalAP(dataGamma);
-
-// Hàm tính tổng số lượng của từng tầng
-const calculateTotalPerFloor = (U6Pro, U6LR, ACPro) => U6Pro + U6LR + ACPro;
-
-export function ThongKeWiFi() {
+  const renderMainTable = (data, title) => {
+    const total = calculateTotal(data);
+    
     return (
-        <div className="thong-ke">
-            <h2 className="title">Thống kê số lượng WiFi các tầng</h2>
-
-            <div className="tables-container">
-                {/* Bảng Beta */}
-                <div className="table-wrapper">
-                    <h3 className="building-title">Nhà Beta</h3>
-                    <table className="wifi-table">
-                        <thead>
-                            <tr>
-                                <th>Tầng</th>
-                                <th>U6 Pro</th>
-                                <th>U6 LR</th>
-                                <th>AC-Pro</th>
-                                <th>Tổng</th> {/* Cột tổng số lượng */}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {Object.entries(dataBeta).map(([tang, { U6Pro, U6LR, ACPro }]) => (
-                                <tr key={tang}>
-                                    <td>{tang}</td>
-                                    <td className="count">{U6Pro}</td>
-                                    <td className="count">{U6LR}</td>
-                                    <td className="count">{ACPro}</td>
-                                    <td className="count">{calculateTotalPerFloor(U6Pro, U6LR, ACPro)}</td> {/* Hiển thị tổng số lượng trong mỗi tầng */}
-                                </tr>
-                            ))}
-                            {/* Hàng tổng */}
-                            <tr className="total-row">
-                                <td><strong>Tổng</strong></td>
-                                <td className="count"><strong>{totalBeta.U6Pro}</strong></td>
-                                <td className="count"><strong>{totalBeta.U6LR}</strong></td>
-                                <td className="count"><strong>{totalBeta.ACPro}</strong></td>
-                                <td className="count"><strong>{totalBeta.U6Pro + totalBeta.U6LR + totalBeta.ACPro}</strong></td> {/* Tổng số lượng trong cả nhà Beta */}
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                {/* Bảng Gamma */}
-                <div className="table-wrapper">
-                    <h3 className="building-title">Nhà Gamma</h3>
-                    <table className="wifi-table">
-                        <thead>
-                            <tr>
-                                <th>Tầng</th>
-                                <th>U6 Pro</th>
-                                <th>U6 LR</th>
-                                <th>AC-Pro</th>
-                                <th>Tổng</th> {/* Cột tổng số lượng */}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {Object.entries(dataGamma).map(([tang, { U6Pro, U6LR, ACPro }]) => (
-                                <tr key={tang}>
-                                    <td>{tang}</td>
-                                    <td className="count">{U6Pro}</td>
-                                    <td className="count">{U6LR}</td>
-                                    <td className="count">{ACPro}</td>
-                                    <td className="count">{calculateTotalPerFloor(U6Pro, U6LR, ACPro)}</td> {/* Hiển thị tổng số lượng trong mỗi tầng */}
-                                </tr>
-                            ))}
-                            {/* Hàng tổng */}
-                            <tr className="total-row">
-                                <td><strong>Tổng</strong></td>
-                                <td className="count"><strong>{totalGamma.U6Pro}</strong></td>
-                                <td className="count"><strong>{totalGamma.U6LR}</strong></td>
-                                <td className="count"><strong>{totalGamma.ACPro}</strong></td>
-                                <td className="count"><strong>{totalGamma.U6Pro + totalGamma.U6LR + totalGamma.ACPro}</strong></td> {/* Tổng số lượng trong cả nhà Gamma */}
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+      <div className="table-wrapper">
+        <h3 className="building-title">{title}</h3>
+        <table className="wifi-table">
+          <thead>
+            <tr>
+              <th>Tầng</th>
+              <th>U6 Pro</th>
+              <th>U6 LR</th>
+              <th>AC-Pro</th>
+              <th>AC-Lite</th>
+              <th>Tổng</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(data).map(([tang, apList]) => {
+              const { U6Pro, U6LR, ACPro, ACLite } = classifyAP(apList);
+              return (
+                <tr key={tang}>
+                  <td>{tang}</td>
+                  <td>{U6Pro}</td>
+                  <td>{U6LR}</td>
+                  <td>{ACPro}</td>
+                  <td>{ACLite}</td>
+                  <td>{U6Pro + U6LR + ACPro + ACLite}</td>
+                </tr>
+              );
+            })}
+            <tr className="total-row">
+              <td><strong>Tổng</strong></td>
+              <td><strong>{total.U6Pro}</strong></td>
+              <td><strong>{total.U6LR}</strong></td>
+              <td><strong>{total.ACPro}</strong></td>
+              <td><strong>{total.ACLite}</strong></td>
+              <td><strong>{total.U6Pro + total.U6LR + total.ACPro + total.ACLite}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     );
+  };
+
+  const renderNCVTable = (house) => {
+    const houseData = wifiData.ncv[house];
+    if (!Object.keys(houseData).length) return null;
+
+    let houseTotal = { U6Pro: 0, U6LR: 0, ACPro: 0, ACLite: 0 };
+    const floorData = Object.entries(houseData).map(([floorName, apList]) => {
+      const classified = classifyAP(apList);
+      houseTotal.U6Pro += classified.U6Pro;
+      houseTotal.U6LR += classified.U6LR;
+      houseTotal.ACPro += classified.ACPro;
+      houseTotal.ACLite += classified.ACLite;
+      
+      return {
+        floorName,
+        ...classified,
+        total: classified.U6Pro + classified.U6LR + classified.ACPro + classified.ACLite
+      };
+    });
+
+    return (
+      <div key={`ncv-${house}`} className="ncv-house">
+        <h2 className="ncv-title">NHÀ CÔNG VỤ SỐ {house}</h2>
+        <div className="table-wrapper">
+          <table className="wifi-table">
+            <thead>
+              <tr>
+                <th>Tầng</th>
+                <th>U6 Pro</th>
+                <th>U6 LR</th>
+                <th>AC-Pro</th>
+                <th>AC-Lite</th>
+                <th>Tổng</th>
+              </tr>
+            </thead>
+            <tbody>
+              {floorData.map(({ floorName, U6Pro, U6LR, ACPro, ACLite, total }) => (
+                <tr key={floorName}>
+                  <td>{floorName}</td>
+                  <td>{U6Pro}</td>
+                  <td>{U6LR}</td>
+                  <td>{ACPro}</td>
+                  <td>{ACLite}</td>
+                  <td>{total}</td>
+                </tr>
+              ))}
+              <tr className="total-row">
+                <td><strong>Tổng</strong></td>
+                <td><strong>{houseTotal.U6Pro}</strong></td>
+                <td><strong>{houseTotal.U6LR}</strong></td>
+                <td><strong>{houseTotal.ACPro}</strong></td>
+                <td><strong>{houseTotal.ACLite}</strong></td>
+                <td><strong>{houseTotal.U6Pro + houseTotal.U6LR + houseTotal.ACPro + houseTotal.ACLite}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  };
+
+  const renderKTXTable = (data, title) => {
+    const total = calculateTotal(data);
+    
+    return (
+      <div className="table-wrapper">
+        <h3 className="building-title">{title}</h3>
+        <table className="wifi-table">
+          <thead>
+            <tr>
+              <th>Khu vực</th>
+              <th>U6 Pro</th>
+              <th>U6 LR</th>
+              <th>AC-Pro</th>
+              <th>AC-Lite</th>
+              <th>Tổng</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(data).map(([khuVuc, apList]) => {
+              const { U6Pro, U6LR, ACPro, ACLite } = classifyAP(apList);
+              return (
+                <tr key={khuVuc}>
+                  <td>{khuVuc}</td>
+                  <td>{U6Pro}</td>
+                  <td>{U6LR}</td>
+                  <td>{ACPro}</td>
+                  <td>{ACLite}</td>
+                  <td>{U6Pro + U6LR + ACPro + ACLite}</td>
+                </tr>
+              );
+            })}
+            <tr className="total-row">
+              <td><strong>Tổng</strong></td>
+              <td><strong>{total.U6Pro}</strong></td>
+              <td><strong>{total.U6LR}</strong></td>
+              <td><strong>{total.ACPro}</strong></td>
+              <td><strong>{total.ACLite}</strong></td>
+              <td><strong>{total.U6Pro + total.U6LR + total.ACPro + total.ACLite}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    );
+  };
+
+  return (
+    <div className="thong-ke">
+      <h1 className="main-title">THỐNG KÊ HỆ THỐNG WIFI</h1>
+      <div className="total-system">
+        <span className="total-label">Tổng số lượng WiFi hiện có:</span>
+        <span className="total-value">{calculateGrandTotal()}</span>
+      </div>
+      <div className="tables-container">
+        {renderMainTable(wifiData.beta, "NHÀ BETA")}
+        {renderMainTable(wifiData.gamma, "NHÀ GAMMA")}
+        {[5, 6, 7].map(renderNCVTable)}
+        {renderKTXTable(wifiData.ktxDomA, "KÝ TÚC XÁ DOM A")}
+        {renderKTXTable(wifiData.ktxDomB, "KÝ TÚC XÁ DOM B")}
+      </div>
+    </div>
+  );
 }

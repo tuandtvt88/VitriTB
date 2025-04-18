@@ -12,6 +12,14 @@ import { Tang3Gamma } from "./components/Tang3Gamma";
 import { Tang4Gamma } from "./components/Tang4Gamma";
 import { Tang5Gamma } from "./components/Tang5Gamma";
 import { ThongKeWiFi } from "./components/ThongKeWiFi";
+import { Tang1NCVso5 } from "./components/Tang1NCVso5";
+import { Tang2NCVso5 } from "./components/Tang2NCVso5";
+import { Tang1NCVso6 } from "./components/Tang1NCVso6";
+import { Tang2NCVso6 } from "./components/Tang2NCVso6";
+import { Tang1NCVso7 } from "./components/Tang1NCVso7";
+import { Tang2NCVso7 } from "./components/Tang2NCVso7";
+import { KTXDomB } from "./components/KTXDomB";
+import { KTXDomA } from "./components/KTXDomA";
 
 function App() {
   return (
@@ -27,6 +35,15 @@ function App() {
         <Route path="tang3gamma" element={<Tang3Gamma/>}></Route>
         <Route path="tang4gamma" element={<Tang4Gamma/>}></Route>
         <Route path="tang5gamma" element={<Tang5Gamma/>}></Route>
+        <Route path="tang1ncvso5" element={<Tang1NCVso5/>}></Route>
+        <Route path="tang2ncvso5" element={<Tang2NCVso5/>}></Route>
+        <Route path="tang1ncvso6" element={<Tang1NCVso6/>}></Route>
+        <Route path="tang2ncvso6" element={<Tang2NCVso6/>}></Route>
+        <Route path="tang1ncvso7" element={<Tang1NCVso7/>}></Route>
+        <Route path="tang2ncvso7" element={<Tang2NCVso7/>}></Route>
+        <Route path="ktxdomb" element={<KTXDomB/>}></Route>
+        <Route path="ktxdoma" element={<KTXDomA/>}></Route>
+        <Route path="tang2ncvso7" element={<Tang2NCVso7/>}></Route>
         <Route path="thongke" element={<ThongKeWiFi/>}></Route>
         </Route>
     </Routes>

@@ -41,13 +41,57 @@
     transform: scale(1.05);
 }
 
+/* Dùng riêng cho khối nhà công vụ */
+.sidebar-menu.nha-cong-vu {
+    width: 85%;
+    background-color: #f9f9f9;
+    border-left: 3px solid #4a90e2;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/* Nút toggle tên nhà */
+.nha-cong-vu-title {
+    background-color: #e3f2fd;
+    color: #1565c0;
+    font-weight: bold;
+    border: none;
+    padding: 6px 10px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: background-color 0.3s;
+}
+
+.nha-cong-vu-title:hover {
+    background-color: #bbdefb;
+}
+
+/* Nút tầng trong nhà công vụ */
+.nha-cong-vu-title .nha-cong-vu-tang {
+    width: 40% !;
+}
+/* Tùy chỉnh khác cho các nút */
+.nha-cong-vu-title {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.nha-cong-vu-tang:hover {
+    text-decoration: underline;
+    color: #0d47a1;
+}
+
 /* Ẩn Sidebar trên mobile mặc định */
 @media (max-width: 768px) {
     .sidebar {
         overflow-y: auto;
         top: 8px !important;
         width: 150px !important;
-        height: auto !important; 
+        height: calc(100vh - 83px) !important; 
         border-radius: 5px;
         left: -5px;
         transform: translateX(-100%);
@@ -71,6 +115,10 @@
     }
     .sidebar.open {
         transform: translateX(0);
+    }
+    .sidebar-menu.nha-cong-vu .nha-cong-vu-title{
+        font-size: 11px;
+        margin: 5px 0px;
     }
 }
        /* Giảm kích thước chữ */

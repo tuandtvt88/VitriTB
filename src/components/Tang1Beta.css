@@ -8,6 +8,7 @@
   overflow: hidden;
   position: relative; /* Để các marker định vị theo phần tử cha */
 }
+
 /* Bọc ảnh bản đồ */
 .map-container {
   position: relative; /* Cho phép icon WiFi định vị theo bản đồ */
@@ -23,6 +24,18 @@
   object-fit: contain;
 }
 
+/* Vị trí dropdown chức năng ở góc trên bên trái ảnh */
+.controls-overlay {
+  position: absolute;
+  top: 10px;
+  left: -200px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
 /* Marker của WiFi */
 .wifi-marker {
   position: absolute;
@@ -32,29 +45,27 @@
   text-align: center;
   transform: translate(-50%, -100%); /* Đưa icon WiFi lên trên tên */
   white-space: nowrap; /* Tránh tên WiFi bị xuống dòng */
+  cursor: pointer;
 }
-/*Icon Wifi */
 
+/* Hiệu ứng WiFi icon phát sáng */
 @keyframes wifiGlow1 {
   0% { stroke-opacity: 0; }
   25% { stroke-opacity: 1; }
   100% { stroke-opacity: 1; }
 }
-
 @keyframes wifiGlow2 {
   0% { stroke-opacity: 0; }
   25% { stroke-opacity: 0; }
   50% { stroke-opacity: 1; }
   100% { stroke-opacity: 1; }
 }
-
 @keyframes wifiGlow3 {
   0% { stroke-opacity: 0; }
   50% { stroke-opacity: 0; }
   75% { stroke-opacity: 1; }
   100% { stroke-opacity: 1; }
 }
-
 @keyframes wifiGlow4 {
   0% { stroke-opacity: 0; }
   75% { stroke-opacity: 0; }
@@ -75,20 +86,14 @@
 }
 .wifi-icon path:nth-child(1) {
   animation: wifiGlow4 0s infinite ease-in-out;
-  
 }
 
 .wifi-icon {
   stroke: rgb(9, 181, 9);  /* Màu xanh lá sáng hơn */
-  stroke-width: 3px; /*Đậm hơn*/
+  stroke-width: 3px;
   stroke-linecap: round;
   font-size: 28px;
-  /* filter: drop-shadow(0px 0px 10px rgba(0, 255, 0, 1)); Hiệu ứng sáng mạnh hơn */
 }
-
-
-
-
 
 /* Tên WiFi */
 .wifi-name {
@@ -100,32 +105,62 @@
   font-weight: bold;
   text-align: center;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out; /*Hiệu ứng chuyển động mượt */
+  transition: transform 0.2s ease-in-out;
 }
-/* Khi hover vào tên Wifi phóng to lên 1.5 lần */
 .wifi-name:hover {
   transform: scale(1.5);
 }
-/* Đảm bảo layout ổn định trên màn hình nhỏ */
+
+/* Icon xóa WiFi */
+.delete-icon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: white;
+  border-radius: 50%;
+  padding: 2px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
 @media screen and (max-width: 768px) {
+  .tang1beta {
+    width: 105%;
+  height: 100vh;
+    left: -11px;
+  }
   .map-image {
       max-width: 100%;
       max-height: 80vh;
   }
 
   .wifi-icon {
-    font-size: 10px !important; /* Giảm kích thước icon */
+    font-size: 10px !important;
     width: 16px;
     height: 16px;
   }
 
   .wifi-name {
-    font-size: 3px !important; /* Giảm kích thước chữ */
-    padding: 1px 1px; /* Giảm padding để chữ không bị tràn */
+    font-size: 3px !important;
+    padding: 1px 1px;
   }
 
-  /* Khi hover vào, chỉ phóng to nhẹ */
   .wifi-name:hover {
     transform: scale(1.1);
+  }
+  .controls-overlay {
+    position: absolute;
+    top: -90px;
+    left: 0px;
+  }
+  .wifi-marker input[type="text"] {
+    font-size: 10px !important;
+    width: 60px;
+    padding: 2px 4px;
+  }
+
+  .wifi-marker button {
+    font-size: 10px !important;
+    padding: 2px 4px;
   }
 }

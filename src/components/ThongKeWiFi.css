@@ -1,146 +1,173 @@
 .thong-ke {
     padding: 20px;
-    max-width: 1000px;
+    max-width: 1400px;
     margin: 0 auto;
     font-family: 'Arial', sans-serif;
-    background: #f4f6f9;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    background: #f9fafc;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
-/* Tiêu đề */
-.thong-ke .title {
+.main-title {
     text-align: center;
     color: #2c3e50;
-    margin-bottom: 30px;
-    font-size: 24px;
-    font-weight: bold;
+    margin: 0 0 30px 0;
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 15px;
+    background: linear-gradient(45deg, #3498db, #2c3e50);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-/* Bố cục bảng */
-.thong-ke .tables-container {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 1fr 1fr;
+.tables-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-/* Thiết kế khung bảng */
-.thong-ke .table-wrapper {
+.table-wrapper {
     background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 15px;
+    overflow-x: auto;
+    margin: 0 auto;
+    width: 100%;
 }
 
-/* Tiêu đề từng bảng */
-.thong-ke .building-title {
-    color: #3498db;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-/* Thiết kế bảng */
-.thong-ke .wifi-table {
+.wifi-table {
+    min-width: 600px;
     width: 100%;
     border-collapse: collapse;
-    margin: 0 auto;
-    border: 2px solid #3498db;
+    border: 1px solid #e0e0e0;
 }
 
-/* Định dạng tiêu đề cột */
-.thong-ke .wifi-table th {
+.wifi-table th {
     background-color: #3498db;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 600;
     padding: 12px;
-}
-
-/* Định dạng ô dữ liệu */
-.thong-ke .wifi-table td {
-    background-color: #ecf0f1;
-    color: #2c3e50;
     text-align: center;
-    padding: 12px;
+    position: sticky;
+    left: 0;
 }
 
-/* Hàng xen kẽ màu khác */
-.thong-ke .wifi-table tr:nth-child(even) td {
-    background-color: #d6eaf8;
-}
-
-/* Hiệu ứng hover */
-.thong-ke .wifi-table tr:hover td {
-    background-color: #a9cce3;
-    color: white;
-    transition: 0.3s;
-}
-
-/* Cột loại AP */
-.thong-ke .ap-type {
-    font-weight: bold;
-}
-
-/* Màu sắc cho từng loại AP */
-.thong-ke .ap-u6-pro {
-    color: #2ecc71;  /* Xanh lá */
-}
-
-.thong-ke .ap-u6-lr {
-    color: #e67e22;  /* Cam */
-}
-
-.thong-ke .ap-ac-pro {
-    color: #c0392b;  /* Đỏ */
-}
-
-/* Hàng tổng */
-.thong-ke .total-row {
-    background-color: #f1c40f; /* Màu vàng */
-    font-weight: bold;
-}
-
-.thong-ke .total-row td {
+.wifi-table td {
+    background-color: #f8f9fa;
     color: #2c3e50;
-}
-.stat-button {
-    text-decoration: none;
-    color: inherit; /* Optional: This will make sure the link inherits the text color */
+    padding: 10px;
+    text-align: center;
+    font-size: 13px;
+    border-bottom: 1px solid #eee;
 }
 
-/* Responsive */
+.wifi-table tr:nth-child(even) td {
+    background-color: #f1f5f9;
+}
+
+.wifi-table tr:hover td {
+    background-color: #e3f2fd;
+}
+
+.total-row {
+    background-color: #e8f5e9 !important;
+    font-weight: 600;
+}
+.total-system {
+    text-align: center;
+    margin: -15px 0 25px 0;
+    padding: 12px;
+    background: #f0f8ff;
+    border-radius: 8px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.total-label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-right: 8px;
+}
+
+.total-value {
+    font-weight: 700;
+    color: #3498db;
+    font-size: 1.2em;
+}
+/* Responsive Mobile */
 @media (max-width: 768px) {
-  .thong-ke {
-        padding: 5px; /* Giảm padding tổng thể */
-    }
-    .thong-ke .tables-container {
-        grid-template-columns: 1fr;
-        gap: 1px; /* Giảm khoảng cách giữa các bảng */
-    }
-    
-
-    .thong-ke .table-wrapper {
-        margin-bottom: 0px !important;
-        overflow-x: auto; /* Allow horizontal scroll for tables on small screens */
+    .thong-ke {
+        padding: 25px; /* Giảm padding */
+        width: 100vw; /* Thêm dòng này */
+        margin-left: -20px; /* Bù trừ padding */
+        margin-right: -20px;
+        border-radius: 0;
+        box-shadow: none;
     }
 
-    .thong-ke .wifi-table {
-        font-size: 10px; /* Make the font smaller on mobile for readability */
+    .main-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+        
     }
 
-    .thong-ke .wifi-table th, .thong-ke .wifi-table td {
-        padding: 5px; /* Reduce padding on smaller screens */
+    .tables-container {
+        gap: 8px; /* Giảm khoảng cách */
+        padding: 0 10px; /* Thêm padding 2 bên */
     }
-    .thong-ke .wifi-table th{
+
+    .table-wrapper {
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .wifi-table {
+        min-width: 100%;
+    }
+
+    .wifi-table th {
         font-size: 12px;
+        padding: 10px;
     }
 
-    .thong-ke .title {
-        font-size: 11px; /* Adjust title size for mobile */
+    .wifi-table td {
+        font-size: 12px;
+        padding: 8px;
     }
 
-    .thong-ke .building-title {
-        font-size: 13px; /* Adjust title size for mobile */
+    .ncv-house {
+        margin: 10px 0;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .wifi-table th {
+        font-size: 11px;
+        padding: 8px;
+    }
+
+    .wifi-table td {
+        font-size: 11px;
+        padding: 6px;
+    }
+
+    .tables-container {
+        gap: 8px;
     }
 }
