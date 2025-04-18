@@ -21,7 +21,7 @@
   "homepage": "https://tuandtvt88.github.io/MapDevice",
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false react-scripts build",
+    "build": "cross-env CI=false react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
