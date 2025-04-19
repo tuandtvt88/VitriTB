@@ -15,7 +15,7 @@ export function KTXDomB() {
     const [newWifiName, setNewWifiName] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/ktxdomb")
+        fetch("https://vitritb-production-ef94.up.railway.app/ktxdomb")
             .then((response) => response.json())
             .then((data) => setWifiLocations(data))
             .catch((error) => console.error("Lỗi lấy dữ liệu WiFi:", error));
@@ -47,7 +47,7 @@ export function KTXDomB() {
             leftPosition: pendingAddPosition.left
         };
 
-        fetch("http://localhost:5000/api/ktxdomb", {
+        fetch("https://vitritb-production-ef94.up.railway.app/ktxdomb", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newWifi),
@@ -66,7 +66,7 @@ export function KTXDomB() {
     const handleDelete = (id) => {
         const confirmDelete = window.confirm("Bạn có chắc muốn xóa WiFi này?");
         if (confirmDelete) {
-            fetch(`http://localhost:5000/api/ktxdomb/${id}`, {
+            fetch(`https://vitritb-production-ef94.up.railway.app/ktxdomb/${id}`, {
                 method: "DELETE",
             })
                 .then(async (res) => {
@@ -100,7 +100,7 @@ export function KTXDomB() {
 
         const updatedWifi = updatedWifiList.find(wifi => wifi.id === wifiId);
 
-        fetch(`http://localhost:5000/api/ktxdomb/${wifiId}`, {
+        fetch(`https://vitritb-production-ef94.up.railway.app/ktxdomb/${wifiId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedWifi),
@@ -123,7 +123,7 @@ export function KTXDomB() {
         const updatedWifi = wifiLocations.find(wifi => wifi.id === wifiId);
         if (!updatedWifi) return;
 
-        fetch(`http://localhost:5000/api/ktxdomb/${wifiId}`, {
+        fetch(`https://vitritb-production-ef94.up.railway.app/ktxdomb/${wifiId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedWifi),
@@ -162,7 +162,7 @@ export function KTXDomB() {
 
         const updated = updatedWifiList.find(wifi => wifi.id === id);
 
-        fetch(`http://localhost:5000/api/ktxdomb/${id}`, {
+        fetch(`https://vitritb-production-ef94.up.railway.app/ktxdomb/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updated),
@@ -201,7 +201,7 @@ export function KTXDomB() {
 
         const updated = updatedWifiList.find(wifi => wifi.id === id);
 
-        fetch(`http://localhost:5000/api/ktxdomb/${id}`, {
+        fetch(`https://vitritb-production-ef94.up.railway.app/ktxdomb/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updated),
